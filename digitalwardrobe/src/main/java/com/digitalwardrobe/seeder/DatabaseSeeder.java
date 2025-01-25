@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -15,16 +16,19 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final UserRepository userRepository;
     private final ClothingPieceRepository clothingPieceRepository;
     private final OutfitRepository outfitRepository;
-    private PasswordEncoder passwordEncoder;
+    private final CalendarEntryRepository calendarEntryRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public DatabaseSeeder(
             UserRepository userRepository, 
             ClothingPieceRepository clothingPieceRepository,
             OutfitRepository outfitRepository,
-            PasswordEncoder passwordEncoder) { // Add passwordEncoder
+            CalendarEntryRepository calendarEntryRepository, // Add this
+            PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.clothingPieceRepository = clothingPieceRepository;
         this.outfitRepository = outfitRepository;
+        this.calendarEntryRepository = calendarEntryRepository; // Add this
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -74,6 +78,35 @@ public class DatabaseSeeder implements CommandLineRunner {
         // Create Outfits for User 2
         Outfit outfit3 = new Outfit(null, "Chill Day", user2, Set.of(cp5, cp6, cp7));
         outfitRepository.save(outfit3);
+
+        CalendarEntry entry1 = new CalendarEntry(
+            null,
+            LocalDate.now().plusDays(1),
+            outfit1, // Casual Look for user1
+            user1,
+            "Dinner with friends",
+            "Restaurant dress code is smart casual"
+        );
+
+        CalendarEntry entry2 = new CalendarEntry(
+            null,
+            LocalDate.now().plusDays(3),
+            outfit2, // Sporty Look for user1
+            user1,
+            "Gym session",
+            "Remember to pack water bottle"
+        );
+
+        CalendarEntry entry3 = new CalendarEntry(
+            null,
+            LocalDate.now().plusDays(2),
+            outfit3, // Chill Day for user2
+            user2,
+            "Movie night",
+            "Going to see the new Marvel movie"
+        );
+
+        calendarEntryRepository.saveAll(List.of(entry1, entry2, entry3));
 
         System.out.println("\u001B[32mDatabase seeded successfully!\u001B[0m");
     }
