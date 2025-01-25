@@ -1,0 +1,106 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "username": "johndoe",
+        "password": "password"
+    },
+    {
+        "firstName": "Alice",
+        "lastName": "Smith",
+        "email": "alice.smith@example.com",
+        "username": "asmith",
+        "password": "password"
+    },
+
+
+    {
+        "name": "BDG Blue Jeans",
+        "category": "PANTS",
+        "imgUrl": "http://example.com/images/bdg-blue-jeans.jpg"
+    },
+    {
+        "name": "Zara Knit Sweatshirt",
+        "category": "SWEATSHIRTS",  
+        "imgUrl": "http://example.com/images/zara-knit.jpg"
+    },
+    {
+        "name": "UNIQLO Joggers",
+        "category": "JOGGERS",
+        "imgUrl": "http://example.com/images/uniqlo-joggers.jpg"
+    },
+    {
+      "name": "H&M Hoodie",
+      "category": "HOODIES",
+      "imgUrl": "http://example.com/images/hm-hoodie.jpg"
+    },
+    {
+      "name": "Lacoste T-shirt",
+      "category": "TSHIRTS",
+      "imgUrl": "http://example.com/images/lacoste-tshirt.jpg"
+    },
+    {
+      "name": "RL Hat",
+      "category": "HATS",
+      "imgUrl": "http://example.com/images/rl-hat.jpg"
+    },
+
+
+    {
+        "id": 1,
+        "name": "Casual Outfit",
+        "user": {
+          "id": 1,
+          "username": "johndoe"
+        },
+        "clothingPieces": [
+          {
+            "id": 1,
+            "name": "Red T-Shirt",
+            "category": "TSHIRTS",
+            "imgUrl": "https://example.com/images/red-tshirt.jpg"
+          },
+          {
+            "id": 2,
+            "name": "Blue Jeans",
+            "category": "PANTS",
+            "imgUrl": "https://example.com/images/blue-jeans.jpg"
+          },
+          {
+            "id": 3,
+            "name": "TNF Puffer",
+            "category": "JACKETS",
+            "imgUrl": "https://example.com/images/tnf-jacket.jpg"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Sporty Look",
+        "user": {
+          "id": 1,
+          "username": "johndoe"
+        },
+        "clothingPieces": [
+          {
+            "id": 3,
+            "name": "Black Sneakers",
+            "category": "SHOES",
+            "imgUrl": "https://example.com/images/black-sneakers.jpg"
+          },
+          {
+            "id": 1,
+            "name": "Red T-Shirt",
+            "category": "TSHIRTS",
+            "imgUrl": "https://example.com/images/red-tshirt.jpg"
+          },
+          {
+            "id": 4,
+            "name": "Nike Short",
+            "category": "SHORTS",
+            "imgUrl": "https://example.com/images/nike-shorts.jpg"
+          }
+        ]
+    }
+]
