@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Wardrobe - Profile</title>
+    <style>
+        .profile-container {
+            width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .user-info {
+            margin-bottom: 20px;
+        }
+        .logout-button {
+            padding: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>User Profile</h2>
+        <div class="user-info">
+            <div id="userDetails">Loading...</div>
+        </div>
+        <button onclick="logout()" class="logout-button">Logout</button>
+    </div>
+
+    <script src="/js/userAuth.js"></script>
+</body>
+</html>
