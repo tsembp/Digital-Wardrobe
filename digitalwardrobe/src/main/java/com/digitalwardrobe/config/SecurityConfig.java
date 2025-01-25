@@ -2,6 +2,7 @@ package com.digitalwardrobe.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,6 +30,11 @@ public class SecurityConfig {
                 .requestMatchers("/api/outfit/**").authenticated() // only authenticated users
                 .requestMatchers("/api/users/**").authenticated() // only authenticated users
                 .anyRequest().authenticated()) // Require authentication for all other requests
+            .exceptionHandling(ex -> ex
+                .authenticationEntryPoint((request, response, authException) -> {
+                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
+                })
+            )
             .sessionManagement(session -> session
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Use stateless session management
             .authenticationProvider(authenticationProvider)

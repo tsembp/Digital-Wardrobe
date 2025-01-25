@@ -25,6 +25,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class User implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+
     @Column(unique = true, nullable = false)
     @NotNull(message = "Username cannot be null")
     private String username;
@@ -49,7 +52,8 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private Set<CalendarEntry> calendarEntries;
 
-    public User(String firstName, String lastName, String email, String username, String password, Role role) {
+    public User(String id, String firstName, String lastName, String email, String username, String password, Role role) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

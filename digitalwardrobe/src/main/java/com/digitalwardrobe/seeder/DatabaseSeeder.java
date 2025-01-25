@@ -3,6 +3,7 @@ package com.digitalwardrobe.seeder;
 import com.digitalwardrobe.models.*;
 import com.digitalwardrobe.repository.*;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -14,19 +15,41 @@ public class DatabaseSeeder implements CommandLineRunner {
     private final UserRepository userRepository;
     private final ClothingPieceRepository clothingPieceRepository;
     private final OutfitRepository outfitRepository;
+    private PasswordEncoder passwordEncoder;
 
-    public DatabaseSeeder(UserRepository userRepository, ClothingPieceRepository clothingPieceRepository,
-                          OutfitRepository outfitRepository) {
+    public DatabaseSeeder(
+            UserRepository userRepository, 
+            ClothingPieceRepository clothingPieceRepository,
+            OutfitRepository outfitRepository,
+            PasswordEncoder passwordEncoder) { // Add passwordEncoder
         this.userRepository = userRepository;
         this.clothingPieceRepository = clothingPieceRepository;
         this.outfitRepository = outfitRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void run(String... args) {
         // Create Users
-        User user1 = new User("John", "Doe", "john.doe@example.com", "johndoe", "password", Role.USER);
-        User user2 = new User("Alice", "Smith", "alice.smith@example.com", "asmith", "password", Role.USER);
+        User user1 = new User(
+            null, 
+            "John", 
+            "Doe", 
+            "john.doe@example.com", 
+            "johndoe", 
+            passwordEncoder.encode("password"), 
+            Role.USER
+        );
+
+        User user2 = new User(
+            null, 
+            "Alice", 
+            "Smith", 
+            "alice.smith@example.com", 
+            "asmith", 
+            passwordEncoder.encode("password"), 
+            Role.USER
+        );
         userRepository.saveAll(List.of(user1, user2));
 
         // Create Clothing Pieces for User 1
