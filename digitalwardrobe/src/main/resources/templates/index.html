@@ -55,6 +55,11 @@
         </form>
     </div>
 
-    <script src="/js/userAuth.js"></script>
+    <script type="module">
+        import { initializeAuthHandlers } from '/js/auth/auth.handlers.js';
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeAuthHandlers();
+        });
+    </script>
 </body>
 </html>

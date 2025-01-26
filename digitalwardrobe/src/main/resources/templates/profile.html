@@ -33,6 +33,16 @@
         <button onclick="logout()" class="logout-button">Logout</button>
     </div>
 
-    <script src="/js/userAuth.js"></script>
+    <script type="module">
+        import { initializeProfilePage } from '/js/user/user.handlers.js';
+        import { authService } from '/js/auth/auth.service.js';
+        
+        initializeProfilePage();
+        document.querySelector('.logout-button')
+            .addEventListener('click', async () => {
+                await authService.logout();
+                window.location.href = '/';
+            });
+    </script>
 </body>
 </html>
