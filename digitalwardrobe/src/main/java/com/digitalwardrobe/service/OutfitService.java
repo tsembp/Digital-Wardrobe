@@ -29,7 +29,15 @@ public class OutfitService {
     // Get user's outfits
     public List<Outfit> getAllOutfits(String username) {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return outfitRepository.findByUser(user);
+        
+        // for debugging
+        List<Outfit> outfits = outfitRepository.findByUser(user);
+        System.out.println("Printing outfits");
+        for(Outfit outfit : outfits) {
+            System.out.println(outfit.getName());
+        }
+        return outfits;
+        // return outfitRepository.findByUser(user);
     }
 
     // Get specific outfit

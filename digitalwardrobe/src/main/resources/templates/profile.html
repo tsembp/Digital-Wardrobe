@@ -11,7 +11,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .user-info {
+        .user-info, .outfits, .clothing-pieces {
             margin-bottom: 20px;
         }
         .logout-button {
@@ -22,6 +22,23 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .add-button{
+            padding: 10px;
+            background-color: #00ae00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container input, .form-container select {
+            display: block;
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -30,11 +47,52 @@
         <div class="user-info">
             <div id="userDetails">Loading...</div>
         </div>
+        <div class="outfits">
+            <h3>Outfits</h3>
+            <ul id="outfitList"></ul>
+        </div>
+        <div class="clothing-pieces">
+            <h3>Clothing Pieces</h3>
+            <ul id="clothingPieceList"></ul>
+        </div>
+
+        <div class="form-container">
+            <h3>Add Clothing Piece</h3>
+            <input type="text" id="clothingPieceName" placeholder="Name" required>
+            <select id="clothingPieceCategory" required>
+                <option value="">Select Category</option>
+                <option value="SHOES">Shoes</option>
+                <option value="SHORTS">Shorts</option>
+                <option value="SKIRTS">Skirts</option>
+                <option value="PANTS">Pants</option>
+                <option value="JOGGERS">Joggers</option>
+                <option value="TSHIRTS">T-Shirts</option>
+                <option value="SHIRTS">Shirts</option>
+                <option value="HOODIES">Hoodies</option>
+                <option value="SWEATSHIRTS">Sweatshirts</option>
+                <option value="JACKETS">Jackets</option>
+                <option value="HATS">Hats</option>
+                <option value="BELTS">Belts</option>
+                <option value="SCARFS">Scarfs</option>
+                <option value="BAGS">Bags</option>
+                <option value="GLASSES">Glasses</option>
+            </select>
+            <input type="text" id="clothingPieceImgUrl" placeholder="Image URL" required>
+            <button onclick="addClothingPiece()" class="add-button">Add Clothing Piece</button>
+        </div>
+
+        <div class="form-container">
+            <h3>Add Outfit</h3>
+            <input type="text" id="outfitName" placeholder="Name" required>
+            <input type="text" id="outfitClothingPieceIds" placeholder="Clothing Piece IDs (comma-separated)" required>
+            <button onclick="addOutfit()" class="add-button">Add Outfit</button>
+        </div>
+
         <button onclick="logout()" class="logout-button">Logout</button>
     </div>
 
     <script type="module">
-        import { initializeProfilePage } from '/js/user/user.handlers.js';
+        import { initializeProfilePage, addClothingPiece, addOutfit } from '/js/user/user.handlers.js';
         import { authService } from '/js/auth/auth.service.js';
         
         initializeProfilePage();

@@ -2,6 +2,8 @@ package com.digitalwardrobe.models;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -34,9 +36,11 @@ public class ClothingPiece {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"clothingPieces", "outfits", "calendarEntries"})
     private User user;
 
     @ManyToMany(mappedBy = "clothingPieces")
+    @JsonIgnoreProperties("clothingPieces")
     private Set<Outfit> outfits;
 
     /* GETTERS */

@@ -2,6 +2,8 @@ package com.digitalwardrobe.models;
 
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class Outfit {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"outfits", "clothingPieces", "calendarEntries"})
     private User user;
 
     @ManyToMany
@@ -36,6 +39,7 @@ public class Outfit {
         joinColumns = @JoinColumn(name = "outfit_id"),
         inverseJoinColumns = @JoinColumn(name = "clothing_piece_id")
     )
+    @JsonIgnoreProperties("outfits")
     private Set<ClothingPiece> clothingPieces;
 
     /* GETTERS */

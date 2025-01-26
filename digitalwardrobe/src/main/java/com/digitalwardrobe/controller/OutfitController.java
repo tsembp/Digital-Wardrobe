@@ -24,7 +24,13 @@ public class OutfitController {
 
     @GetMapping
     public ResponseEntity<List<Outfit>> getAllOutfits(Principal principal) {
-        return ResponseEntity.ok(outfitService.getAllOutfits(principal.getName()));
+        List<Outfit> outfits = outfitService.getAllOutfits(principal.getName());
+        System.out.println("Printing outfits from controller:");
+        for(Outfit outfit : outfits) {
+            System.out.println(outfit.getName());
+        }
+        return ResponseEntity.ok(outfits);
+        // return ResponseEntity.ok(outfitService.getAllOutfits(principal.getName()));
     }
 
     @GetMapping("/{id}")
