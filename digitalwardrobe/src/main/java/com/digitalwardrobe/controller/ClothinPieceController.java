@@ -31,7 +31,6 @@ public class ClothinPieceController {
 
     @GetMapping
     public ResponseEntity<List<ClothingPiece>> getAllClothingPieces(Principal principal) {
-        System.out.println("Get mapping for clothing.");
         return ResponseEntity.ok(clothingPieceService.getAllClothingPieces(principal.getName()));
     } // tested OK
 

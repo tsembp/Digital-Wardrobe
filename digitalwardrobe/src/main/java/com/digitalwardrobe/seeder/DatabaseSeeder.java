@@ -23,12 +23,12 @@ public class DatabaseSeeder implements CommandLineRunner {
             UserRepository userRepository, 
             ClothingPieceRepository clothingPieceRepository,
             OutfitRepository outfitRepository,
-            CalendarEntryRepository calendarEntryRepository, // Add this
+            CalendarEntryRepository calendarEntryRepository, 
             PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.clothingPieceRepository = clothingPieceRepository;
         this.outfitRepository = outfitRepository;
-        this.calendarEntryRepository = calendarEntryRepository; // Add this
+        this.calendarEntryRepository = calendarEntryRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -71,12 +71,12 @@ public class DatabaseSeeder implements CommandLineRunner {
         clothingPieceRepository.saveAll(List.of(cp5, cp6, cp7, cp8));
 
         // Create Outfits for User 1
-        Outfit outfit1 = new Outfit(null, "Casual Look", user1, Set.of(cp1, cp2, cp3));
-        Outfit outfit2 = new Outfit(null, "Sporty Look", user1, Set.of(cp1, cp4, cp3));
+        Outfit outfit1 = new Outfit(null, "Casual Look", user1, Set.of(cp1, cp2, cp3), Set.of(cp1.getId(), cp2.getId(), cp3.getId()));
+        Outfit outfit2 = new Outfit(null, "Sporty Look", user1, Set.of(cp1, cp4, cp3), Set.of(cp1.getId(), cp4.getId(), cp3.getId()));
         outfitRepository.saveAll(List.of(outfit1, outfit2));
 
         // Create Outfits for User 2
-        Outfit outfit3 = new Outfit(null, "Chill Day", user2, Set.of(cp5, cp6, cp7));
+        Outfit outfit3 = new Outfit(null, "Chill Day", user2, Set.of(cp5, cp6, cp7), Set.of(cp5.getId(), cp6.getId(), cp7.getId()));
         outfitRepository.save(outfit3);
 
         CalendarEntry entry1 = new CalendarEntry(
