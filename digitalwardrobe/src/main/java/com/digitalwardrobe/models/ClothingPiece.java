@@ -3,7 +3,9 @@ package com.digitalwardrobe.models;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -32,6 +34,8 @@ public class ClothingPiece {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @JsonProperty("imgUrl")
+    @Column(name = "img_url")
     private String imgUrl;
 
     @ManyToOne
@@ -44,6 +48,10 @@ public class ClothingPiece {
     private Set<Outfit> outfits;
 
     /* GETTERS */
+    public Long getId(){
+        return id;
+    }
+
     public String getClothingPieceName(){
         return name;
     }

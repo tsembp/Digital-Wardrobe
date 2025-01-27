@@ -38,12 +38,8 @@ export const addClothingPiece = async () => {
     const category = document.getElementById('clothingPieceCategory').value;
     const imgUrl = document.getElementById('clothingPieceImgUrl').value;
 
-    const clothingPiece = { name, category, imgUrl };
-    console.log('Adding clothing piece:', clothingPiece); // debug
-
     try {
-        await userService.addClothingPiece(clothingPiece);
-        // await userService.addClothingPiece({ name, category, imgUrl });
+        await userService.addClothingPiece({ name, category, imgUrl });
         alert('Clothing piece added successfully');
         window.location.reload();
     } catch (error) {

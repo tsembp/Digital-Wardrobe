@@ -22,11 +22,6 @@ export const userService = {
             throw new Error('Failed to load outfits');
         }
 
-        // Clone the response for debugging
-        const responseClone = response.clone();
-        const debugData = await responseClone.json();
-        console.log("Outfits DEBUG:", debugData);
-
         return response.json();
     },
     getUserClothingPieces: async () => {
