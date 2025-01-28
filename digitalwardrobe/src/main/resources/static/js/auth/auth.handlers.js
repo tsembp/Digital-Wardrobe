@@ -64,4 +64,28 @@ export const initializeAuthHandlers = () => {
   } else {
     console.error("Login form not found!");
   }
+
+  const registerForm = document.getElementById('registerForm');
+  if (registerForm) {
+    registerForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        try {
+            const response = await authService.register({ firstName, lastName, username, email, password });
+            if (response.token) {
+                localStorage.setItem('token', response.token);
+                window.location.href = '/profile';
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            alert('Registration failed. Please try again.');
+        }
+    });
+  }
+
 };

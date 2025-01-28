@@ -21,4 +21,9 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/register")
+    public String showRegisterPage() {
+        return "register";
+    }
+
 }
