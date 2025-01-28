@@ -1,65 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Digital Wardrobe - Login</title>
-    <style>
-        .login-container {
-            width: 300px;
-            margin: 100px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-        .error-message {
-            color: red;
-            margin-bottom: 10px;
-        }
-        .submit-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <div class="error-message" th:if="${error}" th:text="${error}"></div>
-        <form id="loginForm" method="POST">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="submit-button">Login</button>
-        </form>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Digital Wardrobe - Home</title>
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
+    <section id="home">
+      <div class="header">
+        <img src="/assets/header-logo.png" alt="Closetly Logo" />
+        <div class="nav-buttons">
+          <button class="register" onclick="window.location.href='/register'">
+            Get Started
+          </button>
+          <button class="login" onclick="window.location.href='/login'">Login</button>
+        </div>
+      </div>
+      <div class="home">
+        <div class="text-content">
+          <h2>Welcome to Closetly 🌟</h2>
+          <h3>A modern, digitalized way to organize your wardrobe.</h3>
+          <p>
+            Manage your clothes, create outfits, preview them to make sure that
+            they look good without trying them on and plan your wardrobe
+            effortlessly.
+          </p>
+        </div>
+        <div class="image-content">
+          <img src="/assets/phone-logo.png" alt="Wardrobe Image" />
+        </div>
+      </div>
+    </section>
 
     <script type="module">
-        import { initializeAuthHandlers } from '/js/auth/auth.handlers.js';
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeAuthHandlers();
-        });
+      import { initializeAuthHandlers } from "/js/auth/auth.handlers.js";
+      document.addEventListener("DOMContentLoaded", () => {
+        initializeAuthHandlers();
+      });
     </script>
-</body>
+  </body>
 </html>
