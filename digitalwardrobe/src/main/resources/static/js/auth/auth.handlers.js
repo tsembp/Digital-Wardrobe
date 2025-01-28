@@ -1,51 +1,67 @@
-import { authService } from './auth.service.js';
+console.log("auth-handlers.js loaded successfully!");
+import { authService } from "./auth.service.js";
 
 export const initializeAuthHandlers = () => {
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        // Create error message element if it doesn't exist
-        let errorElement = document.querySelector('.error-message');
-        if (!errorElement) {
-            errorElement = document.createElement('div');
-            errorElement.className = 'error-message';
-            // Insert error element after h2 and before form
-            loginForm.parentNode.insertBefore(errorElement, loginForm);
-        }
+  console.log("auth-handlers.js loaded successfully!");
 
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            errorElement.textContent = ''; // Clear any previous error
-            errorElement.style.display = 'none';
-            
-            try {
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                const response = await fetch('/api/auth/authenticate/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    })
-                });
+  const loginForm = document.getElementById("loginForm");
+  if (loginForm) {
+    console.log("Login form found!");
 
-                if (!response.ok) {
-                    throw new Error('Invalid username or password');
-                }
-
-                const data = await response.json();
-                if (data.token) {
-                    localStorage.setItem('token', data.token);
-                    window.location.href = '/profile';
-                }
-            } catch (error) {
-                console.error('Login error:', error);
-                errorElement.textContent = 'Invalid username or password';
-                errorElement.style.display = 'block';
-            }
-        });
+    // Create error message element if it doesn't exist
+    let errorElement = document.querySelector(".error-message");
+    if (!errorElement) {
+      errorElement = document.createElement("div");
+      errorElement.className = "error-message";
+      errorElement.style.color = "red";
+      errorElement.style.marginTop = "10px";
+      errorElement.style.fontSize = "14px";
+      errorElement.style.display = "none"; // Initially hidden
+      loginForm.appendChild(errorElement);
     }
+
+    // Handle form submission
+    loginForm.addEventListener("submit", async (e) => {
+      console.log("Form submitted!"); // Debug log
+      e.preventDefault(); // Prevent default form submission
+
+      errorElement.textContent = ""; // Clear any previous error message
+      errorElement.style.display = "none";
+
+      // Collect input values
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+
+      if (!username || !password) {
+        errorElement.textContent =
+          "Please fill out both username and password.";
+        errorElement.style.display = "block";
+        return;
+      }
+
+      try {
+        // Authenticate the user
+        console.log("Sending login request...");
+        const response = await authService.login(username, password);
+
+        // Debugging response
+        console.log("Login response from API:", response);
+
+        // If login is successful, store the token and redirect
+        if (response.token) {
+          localStorage.setItem("token", response.token); // Store token in local storage
+          console.log("Login successful. Redirecting to profile...");
+          window.location.href = "/profile"; // Redirect to profile.html
+        }
+      } catch (error) {
+        // Display error message
+        console.error("Login error:", error);
+        errorElement.textContent =
+          error.message || "An unexpected error occurred. Please try again.";
+        errorElement.style.display = "block";
+      }
+    });
+  } else {
+    console.error("Login form not found!");
+  }
 };

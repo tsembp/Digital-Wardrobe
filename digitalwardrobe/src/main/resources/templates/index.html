@@ -1,36 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Digital Wardrobe - Home</title>
-    <link rel="stylesheet" href="/css/home.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/css/home.css" />
+  </head>
+  <body>
     <section id="home">
-        <div class="header">
-            <img src="/assets/header-logo.png" alt="Closetly Logo">
-            <div class="nav-buttons">
-                <button class="register" onclick="window.location.href='/register'">Get Started</button>
-                <button onclick="window.location.href='/login'">Login</button>
-            </div>
+      <div class="header">
+        <img src="/assets/header-logo.png" alt="Closetly Logo" />
+        <div class="nav-buttons">
+          <button class="register" onclick="window.location.href='/register'">
+            Get Started
+          </button>
+          <button class="login" onclick="window.location.href='/login'">Login</button>
+          </button>
         </div>
-        <div class="home">
-            <div class="text-content">
-                <h2>Welcome to Closetly 🌟</h2>
-                <h3>A modern, digitalized way to organize your wardrobe.</h3>
-                <p>Manage your clothes, create outfits, preview them to make sure that they look good without trying them on and plan your wardrobe effortlessly.</p>
-            </div>
-            <div class="image-content">
-                <img src="/assets/phone-logo.png" alt="Wardrobe Image">
-            </div>
+      </div>
+      <div class="home">
+        <div class="text-content">
+          <h2>Welcome to Closetly 🌟</h2>
+          <h3>A modern, digitalized way to organize your wardrobe.</h3>
+          <p>
+            Manage your clothes, create outfits, preview them to make sure that
+            they look good without trying them on and plan your wardrobe
+            effortlessly.
+          </p>
         </div>
+        <div class="image-content">
+          <img src="/assets/phone-logo.png" alt="Wardrobe Image" />
+        </div>
+      </div>
     </section>
 
     <script type="module">
-        import { initializeAuthHandlers } from '/js/auth/auth.handlers.js';
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeAuthHandlers();
-        });
+      import { initializeAuthHandlers } from "/js/auth/auth.handlers.js";
+      document.addEventListener("DOMContentLoaded", () => {
+        initializeAuthHandlers();
+      });
     </script>
-</body>
+  </body>
 </html>
