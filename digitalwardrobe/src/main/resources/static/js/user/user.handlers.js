@@ -4,6 +4,9 @@ export const initializeProfilePage = async () => {
     if (window.location.pathname === '/profile') {
         try {
             const user = await userService.getCurrentUser();
+            
+            document.getElementById('header-username').innerHTML = `@${user.username}`;
+
             document.getElementById('userDetails').innerHTML = `
                 <p><strong>Username:</strong> ${user.username}</p>
                 <p><strong>First Name:</strong> ${user.firstName}</p>
