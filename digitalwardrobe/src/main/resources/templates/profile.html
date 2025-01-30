@@ -4,50 +4,50 @@
     <meta charset="UTF-8">
     <title>Digital Wardrobe - Profile</title>
     <link rel="stylesheet" href="/css/profile.css">
-    <style>
-        .profile-container {
-            width: 600px;
-            margin: 50px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .user-info, .outfits, .clothing-pieces {
-            margin-bottom: 20px;
-        }
-        .logout-button {
-            padding: 10px;
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .add-button{
-            padding: 10px;
-            background-color: #00ae00;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .form-container {
-            margin-bottom: 20px;
-        }
-        .form-container input, .form-container select {
-            display: block;
-            margin-bottom: 10px;
-            padding: 5px;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
+    <!-- Header -->
     <div class="header">
         <img src="/assets/header-logo.png" alt="Closetly Logo" />
-        <h3 id="header-username">Loading...</h3>
+        <div class="profile-info">
+            <p id="header-username">Loading...</p>
+            <img src="/assets/dummy-profile.png" alt="Dummy Profile pic">
+        </div>
     </div>
-    <div class="profile-container">
+
+    <div class="menu">
+        <ul>
+            <li>
+                <a href="#profile" onclick="showSection('profile')">
+                    <img src="/assets/profile-icons/profile.png" alt="Profile Icon" class="menu-icon">Profile
+                </a>
+            </li>
+            <li>
+                <a href="#clothes" onclick="showSection('clothes')">
+                    <img src="/assets/profile-icons/clothes.png" alt="Clothes Icon" class="menu-icon">Clothes
+                </a>
+            </li>
+            <li>
+                <a href="#outfits" onclick="showSection('outfits')">
+                    <img src="/assets/profile-icons/outfit.png" alt="Outfits Icon" class="menu-icon">Outfits
+                </a>
+            </li>
+            <li>
+                <a href="#calendar" onclick="showSection('calendar')">
+                    <img src="/assets/profile-icons/calendar.png" alt="Calendar Icon" class="menu-icon">Calendar
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="profile" class="content-container active profile-container">
+        <h2>User Profile</h2>
+        <div class="user-info">
+            <div id="userDetails">Loading...</div>
+        </div>
+    </div>
+
+    <!-- <div class="profile-container">
         <h2>User Profile</h2>
         <div class="user-info">
             <div id="userDetails">Loading...</div>
@@ -94,7 +94,7 @@
         </div>
 
         <button onclick="logout()" class="logout-button">Logout</button>
-    </div>
+    </div> -->
 
     <script type="module">
         import { initializeProfilePage, addClothingPiece, addOutfit } from '/js/user/user.handlers.js';

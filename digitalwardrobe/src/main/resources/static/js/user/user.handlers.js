@@ -14,21 +14,21 @@ export const initializeProfilePage = async () => {
                 <p><strong>Email:</strong> ${user.email}</p>
             `;
 
-            const outfits = await userService.getUserOutfits();
-            const outfitList = document.getElementById('outfitList');
-            outfits.forEach(outfit => {
-                const li = document.createElement('li');
-                li.textContent = outfit.name;
-                outfitList.appendChild(li);
-            });
+            // const outfits = await userService.getUserOutfits();
+            // const outfitList = document.getElementById('outfitList');
+            // outfits.forEach(outfit => {
+            //     const li = document.createElement('li');
+            //     li.textContent = outfit.name;
+            //     outfitList.appendChild(li);
+            // });
 
-            const clothingPieces = await userService.getUserClothingPieces();
-            const clothingPieceList = document.getElementById('clothingPieceList');
-            clothingPieces.forEach(piece => {
-                const li = document.createElement('li');
-                li.textContent = piece.name;
-                clothingPieceList.appendChild(li);
-            });
+            // const clothingPieces = await userService.getUserClothingPieces();
+            // const clothingPieceList = document.getElementById('clothingPieceList');
+            // clothingPieces.forEach(piece => {
+            //     const li = document.createElement('li');
+            //     li.textContent = piece.name;
+            //     clothingPieceList.appendChild(li);
+            // });
         } catch (error) {
             console.error('Profile error:', error);
             window.location.href = '/';

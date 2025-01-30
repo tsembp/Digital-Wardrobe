@@ -1,3 +1,10 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* HEADER STYLING */
 .header {
     display: flex;
     justify-content: space-between;
@@ -14,4 +21,115 @@
 
 .header h1 {
     margin: 0;
+}
+
+/* PROFILE STYLING */
+.profile-container {
+    width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-info, .outfits, .clothing-pieces {
+    margin-bottom: 20px;
+}
+
+.logout-button {
+    padding: 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-button{
+    padding: 10px;
+    background-color: #00ae00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-container {
+    margin-bottom: 20px;
+}
+
+.form-container input, .form-container select {
+    display: block;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 100%;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-info img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.content-container {
+    margin-left: 240px;
+    padding: 20px;
+}
+
+
+/* NAV MENU */
+.menu {
+    position: fixed;
+    left: 0;
+    top: 100px;
+    width: 200px;
+    padding: 15px 10px;
+    height: calc(100% - 100px);
+    overflow-y: auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin-bottom: 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu a:hover {
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    filter: grayscale(50%);
+    transition: filter 0.3s ease;
+}
+
+.menu a:hover .menu-icon {
+    filter: grayscale(0);
 }
