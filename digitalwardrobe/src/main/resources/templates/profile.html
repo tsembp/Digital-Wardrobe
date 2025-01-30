@@ -1,111 +1,96 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Digital Wardrobe - Profile</title>
     <link rel="stylesheet" href="/css/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- HEADER -->
     <div class="header">
         <img src="/assets/header-logo.png" alt="Closetly Logo" />
         <div class="profile-info">
             <p id="header-username">Loading...</p>
             <img src="/assets/dummy-profile.png" alt="Dummy Profile pic">
+            <button id="logoutButton" onclick="logout()">Logout</button>
         </div>
     </div>
 
-    <div class="menu">
-        <ul>
-            <li>
-                <a href="#profile" onclick="showSection('profile')">
-                    <img src="/assets/profile-icons/profile.png" alt="Profile Icon" class="menu-icon">Profile
-                </a>
-            </li>
-            <li>
-                <a href="#clothes" onclick="showSection('clothes')">
-                    <img src="/assets/profile-icons/clothes.png" alt="Clothes Icon" class="menu-icon">Clothes
-                </a>
-            </li>
-            <li>
-                <a href="#outfits" onclick="showSection('outfits')">
-                    <img src="/assets/profile-icons/outfit.png" alt="Outfits Icon" class="menu-icon">Outfits
-                </a>
-            </li>
-            <li>
-                <a href="#calendar" onclick="showSection('calendar')">
-                    <img src="/assets/profile-icons/calendar.png" alt="Calendar Icon" class="menu-icon">Calendar
-                </a>
-            </li>
-        </ul>
+    <!-- MAIN LAYOUT -->
+    <div class="wrapper">
+        <!-- LEFT MENU -->
+        <section class="menu">
+            <ul>
+                <li><a href="#profile" class="active" data-section="profile" onclick="showSection('profile')"><img src="/assets/profile-icons/profile.png" alt="Profile">Profile</a></li>
+                <li><a href="#clothes" data-section="clothes" onclick="showSection('clothes')"><img src="/assets/profile-icons/clothes.png" alt="Clothes">Clothes</a></li>
+                <li><a href="#outfits" data-section="outfits" onclick="showSection('outfits')"><img src="/assets/profile-icons/outfit.png" alt="Outfits">Outfits</a></li>
+                <li><a href="#calendar" data-section="calendar" onclick="showSection('calendar')"><img src="/assets/profile-icons/calendar.png" alt="Calendar">Calendar</a></li>
+            </ul>
+        </section>
+
+        <!-- RIGHT CONTENT AREA -->
+        <section class="data">
+            <div id="profile" class="content-container active">
+                <h2>User Profile</h2>
+                <div id="userDetails">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" id="firstName" name="firstName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" id="lastName" name="lastName" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" id="email" name="email" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div id="clothes" class="content-container">
+                <h2>Clothing Pieces</h2>
+                <ul id="clothingPieceList"></ul>
+            </div>
+
+            <div id="outfits" class="content-container">
+                <h2>Outfits</h2>
+                <ul id="outfitList"></ul>
+            </div>
+
+            <div id="calendar" class="content-container">
+                <h2>Calendar</h2>
+                <ul id="calendarEntryList"></ul>
+            </div>
+        </section>
     </div>
-
-    <div id="profile" class="content-container active profile-container">
-        <h2>User Profile</h2>
-        <div class="user-info">
-            <div id="userDetails">Loading...</div>
-        </div>
-    </div>
-
-    <!-- <div class="profile-container">
-        <h2>User Profile</h2>
-        <div class="user-info">
-            <div id="userDetails">Loading...</div>
-        </div>
-        <div class="outfits">
-            <h3>Outfits</h3>
-            <ul id="outfitList"></ul>
-        </div>
-        <div class="clothing-pieces">
-            <h3>Clothing Pieces</h3>
-            <ul id="clothingPieceList"></ul>
-        </div>
-
-        <div class="form-container">
-            <h3>Add Clothing Piece</h3>
-            <input type="text" id="clothingPieceName" placeholder="Name" required>
-            <select id="clothingPieceCategory" required>
-                <option value="">Select Category</option>
-                <option value="SHOES">Shoes</option>
-                <option value="SHORTS">Shorts</option>
-                <option value="SKIRTS">Skirts</option>
-                <option value="PANTS">Pants</option>
-                <option value="JOGGERS">Joggers</option>
-                <option value="TSHIRTS">T-Shirts</option>
-                <option value="SHIRTS">Shirts</option>
-                <option value="HOODIES">Hoodies</option>
-                <option value="SWEATSHIRTS">Sweatshirts</option>
-                <option value="JACKETS">Jackets</option>
-                <option value="HATS">Hats</option>
-                <option value="BELTS">Belts</option>
-                <option value="SCARFS">Scarfs</option>
-                <option value="BAGS">Bags</option>
-                <option value="GLASSES">Glasses</option>
-            </select>
-            <input type="text" id="clothingPieceImgUrl" placeholder="Image URL" required>
-            <button onclick="addClothingPiece()" class="add-button">Add Clothing Piece</button>
-        </div>
-
-        <div class="form-container">
-            <h3>Add Outfit</h3>
-            <input type="text" id="outfitName" placeholder="Name" required>
-            <input type="text" id="outfitClothingPieceIds" placeholder="Clothing Piece IDs (comma-separated)" required>
-            <button onclick="addOutfit()" class="add-button">Add Outfit</button>
-        </div>
-
-        <button onclick="logout()" class="logout-button">Logout</button>
-    </div> -->
 
     <script type="module">
-        import { initializeProfilePage, addClothingPiece, addOutfit } from '/js/user/user.handlers.js';
-        import { authService } from '/js/auth/auth.service.js';
-        
+        import { initializeProfilePage } from '/js/user/user.handlers.js';
+
+        function showSection(sectionId) {
+            // Remove active class from all content containers
+            document.querySelectorAll('.content-container').forEach(el => el.classList.remove('active'));
+            
+            // Add active class to the selected content container
+            document.getElementById(sectionId).classList.add('active');
+
+            // Remove active class from all menu links
+            document.querySelectorAll('.menu a').forEach(el => el.classList.remove('active'));
+            
+            // Add active class to the selected menu link
+            document.querySelector(`.menu a[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
+
+        window.showSection = showSection;
+
         initializeProfilePage();
-        document.querySelector('.logout-button')
-            .addEventListener('click', async () => {
-                await authService.logout();
-                window.location.href = '/';
-            });
     </script>
 </body>
 </html>

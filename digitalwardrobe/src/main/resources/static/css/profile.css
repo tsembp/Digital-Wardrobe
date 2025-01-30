@@ -1,16 +1,16 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Nunito', Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
-/* HEADER STYLING */
+/* HEADER */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px 20px;
-    background-color: #f8f9fa;
+    background-color: #fdfdfd;
     border-bottom: 1px solid #ccc;
 }
 
@@ -21,48 +21,6 @@ body {
 
 .header h1 {
     margin: 0;
-}
-
-/* PROFILE STYLING */
-.profile-container {
-    width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.user-info, .outfits, .clothing-pieces {
-    margin-bottom: 20px;
-}
-
-.logout-button {
-    padding: 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.add-button{
-    padding: 10px;
-    background-color: #00ae00;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.form-container {
-    margin-bottom: 20px;
-}
-
-.form-container input, .form-container select {
-    display: block;
-    margin-bottom: 10px;
-    padding: 5px;
-    width: 100%;
 }
 
 .profile-info {
@@ -77,28 +35,38 @@ body {
     border-radius: 50%;
 }
 
-.content-container {
-    margin-left: 240px;
-    padding: 20px;
+.profile-info button {
+    padding: 8px 12px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
+.profile-info button:hover {
+    background-color: #e60000;
+}
 
-/* NAV MENU */
+/* FLEXBOX LAYOUT */
+.wrapper {
+    display: flex;
+    height: calc(100vh - 100px);
+}
+
+/* MENU (LEFT SIDE - 15%) */
 .menu {
-    position: fixed;
-    left: 0;
-    top: 100px;
-    width: 200px;
-    padding: 15px 10px;
-    height: calc(100% - 100px);
-    overflow-y: auto;
-    font-family: 'Arial', sans-serif;
+    width: 15%;
+    background-color: #fdfdfd;
+    padding: 20px;
+    height: 100%;
+
 }
 
 .menu ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .menu li {
@@ -108,28 +76,66 @@ body {
 .menu a {
     text-decoration: none;
     color: #333;
-    font-weight: 500;
-    font-size: 16px;
+    font-size: 18px;
     display: flex;
     align-items: center;
-    padding: 8px 12px;
+    padding: 10px;
     border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: font-weight 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.menu a:hover {
-    background-color: #f8f9fa;
-    color: #007bff;
+.menu a:hover,
+.menu a.active {
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-.menu-icon {
+.menu img {
     width: 24px;
     height: 24px;
-    margin-right: 12px;
-    filter: grayscale(50%);
-    transition: filter 0.3s ease;
+    margin-right: 10px;
 }
 
-.menu a:hover .menu-icon {
-    filter: grayscale(0);
+/* CONTENT AREA (RIGHT SIDE - 85%) */
+.data {
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 85%;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.content-container {
+    display: none;
+}
+
+.content-container.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    color: #333;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus {
+    background-color: #e0e0e0;
+    outline: none;
 }

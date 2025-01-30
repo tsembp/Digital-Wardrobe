@@ -7,28 +7,37 @@ export const initializeProfilePage = async () => {
             
             document.getElementById('header-username').innerHTML = `@${user.username}`;
 
-            document.getElementById('userDetails').innerHTML = `
-                <p><strong>Username:</strong> ${user.username}</p>
-                <p><strong>First Name:</strong> ${user.firstName}</p>
-                <p><strong>Last Name:</strong> ${user.lastName}</p>
-                <p><strong>Email:</strong> ${user.email}</p>
-            `;
+            document.getElementById('username').value = user.username;
+            document.getElementById('firstName').value = user.firstName;
+            document.getElementById('lastName').value = user.lastName;
+            document.getElementById('email').value = user.email;
 
-            // const outfits = await userService.getUserOutfits();
-            // const outfitList = document.getElementById('outfitList');
-            // outfits.forEach(outfit => {
-            //     const li = document.createElement('li');
-            //     li.textContent = outfit.name;
-            //     outfitList.appendChild(li);
-            // });
+            // fetch clothes
+            const clothingPieces = await userService.getUserClothingPieces();
+            const clothingPieceList = document.getElementById('clothingPieceList');
+            clothingPieces.forEach(piece => {
+                const li = document.createElement('li');
+                li.textContent = piece.name;
+                clothingPieceList.appendChild(li);
+            });
 
-            // const clothingPieces = await userService.getUserClothingPieces();
-            // const clothingPieceList = document.getElementById('clothingPieceList');
-            // clothingPieces.forEach(piece => {
-            //     const li = document.createElement('li');
-            //     li.textContent = piece.name;
-            //     clothingPieceList.appendChild(li);
-            // });
+            // fetch outfits
+            const outfits = await userService.getUserOutfits();
+            const outfitList = document.getElementById('outfitList');
+            outfits.forEach(outfit => {
+                const li = document.createElement('li');
+                li.textContent = outfit.name;
+                outfitList.appendChild(li);
+            });
+
+            // fetch calendar entries
+            const calendarEntries = await userService.getUserCalendarEntries();
+            const calendarEntryList = document.getElementById('calendarEntryList');
+            calendarEntries.forEach(calendarEntry => {
+                const li = document.createElement('li');
+                li.textContent = calendarEntry.date;
+                calendarEntryList.appendChild(li);
+            });
         } catch (error) {
             console.error('Profile error:', error);
             window.location.href = '/';
