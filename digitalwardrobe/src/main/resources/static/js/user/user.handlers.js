@@ -15,10 +15,21 @@ export const initializeProfilePage = async () => {
             // fetch clothes
             const clothingPieces = await userService.getUserClothingPieces();
             const clothingPieceList = document.getElementById('clothingPieceList');
+            clothingPieceList.innerHTML = '';
             clothingPieces.forEach(piece => {
-                const li = document.createElement('li');
-                li.textContent = piece.name;
-                clothingPieceList.appendChild(li);
+                const card = document.createElement('div');
+                card.className = 'clothing-card';
+
+                const img = document.createElement('img');
+                img.src = piece.imgUrl;
+                img.alt = piece.name;
+                card.appendChild(img);
+
+                const title = document.createElement('h3');
+                title.textContent = piece.name;
+                card.appendChild(title);
+
+                clothingPieceList.appendChild(card);
             });
 
             // fetch outfits

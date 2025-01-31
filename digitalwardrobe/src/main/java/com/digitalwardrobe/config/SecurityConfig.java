@@ -28,6 +28,7 @@ public class SecurityConfig {
                 .requestMatchers("/js/**", "/css/**", "/assets/**").permitAll()
                 .requestMatchers("/", "/profile", "/login", "/register").permitAll() // Permit access to login page
                 .requestMatchers("/api/auth/**").permitAll() // Allow access to /api/auth/** endpoints
+                .requestMatchers("/api/files/**").authenticated() // only authenticated users
                 .requestMatchers("/api/clothing/**").authenticated() // only authenticated users
                 .requestMatchers("/api/outfit/**").authenticated() // only authenticated users
                 .requestMatchers("/api/users/**").authenticated() // only authenticated users

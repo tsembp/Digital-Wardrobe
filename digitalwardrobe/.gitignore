@@ -35,3 +35,8 @@ build/
 # Spring Boot Properties
 application.properties
 src/main/resources/application.properties
+
+# Firebase
+src/main/resources/digital-wardrobe-4784a-firebase-adminsdk-fbsvc-40c846f68c.json
+src/main/java/com/digitalwardrobe/config/FirebaseConfig.java
+src/main/java/com/digitalwardrobe/service/FileStorageService.java
