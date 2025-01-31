@@ -57,18 +57,20 @@ public class DatabaseSeeder implements CommandLineRunner {
         userRepository.saveAll(List.of(user1, user2));
 
         // Create Clothing Pieces for User 1
-        ClothingPiece cp1 = new ClothingPiece(null, "Red T-Shirt", Category.TSHIRTS, "https://example.com/red-tshirt.jpg", user1, null);
-        ClothingPiece cp2 = new ClothingPiece(null, "Blue Jeans", Category.PANTS, "https://example.com/blue-jeans.jpg", user1, null);
-        ClothingPiece cp3 = new ClothingPiece(null, "Black Sneakers", Category.SHOES, "https://example.com/black-sneakers.jpg", user1, null);
-        ClothingPiece cp4 = new ClothingPiece(null, "Nike Shorts", Category.SHORTS, "https://example.com/nike-shorts.jpg", user1, null);
-        clothingPieceRepository.saveAll(List.of(cp1, cp2, cp3, cp4));
+        ClothingPiece cp1 = new ClothingPiece(null, "Zara Baggy black tee", Category.TSHIRTS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/8145a181-a23d-4d9c-b282-86148b3dfd74_baggy-black-tee.png?alt=media", user1, null);
+        ClothingPiece cp2 = new ClothingPiece(null, "Homeboy jeans", Category.PANTS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/90cc94a5-f127-46f9-91d4-a7707097dd25_blue-jean.png?alt=media", user1, null);
+        ClothingPiece cp3 = new ClothingPiece(null, "Jordan 4s", Category.SHOES, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/b12fcde1-b000-4477-8abe-7f6c0e3789bf_jordan-4s.png?alt=media", user1, null);
+        ClothingPiece cp4 = new ClothingPiece(null, "Nike Shorts", Category.SHORTS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/886ee14d-70d9-4061-9edb-b30de3190ebb_nike-short.png?alt=media", user1, null);
+        ClothingPiece cp5 = new ClothingPiece(null, "Converse Cap", Category.HATS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/106173f8-4543-437d-8c96-7c2c24957bf5_converse-cap.png?alt=media", user1, null);
+        ClothingPiece cp6 = new ClothingPiece(null, "Pull&Bear Sweatshirt", Category.SWEATSHIRTS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/b073cb8a-86bd-4e61-8ada-690945e81500_black-sweatshirt.png?alt=media", user1, null);
+        clothingPieceRepository.saveAll(List.of(cp1, cp2, cp3, cp4, cp5, cp6));
 
         // Create Clothing Pieces for User 2
-        ClothingPiece cp5 = new ClothingPiece(null, "Green Hoodie", Category.HOODIES, "https://example.com/green-hoodie.jpg", user2, null);
-        ClothingPiece cp6 = new ClothingPiece(null, "Gray Joggers", Category.JOGGERS, "https://example.com/gray-joggers.jpg", user2, null);
-        ClothingPiece cp7 = new ClothingPiece(null, "White Sneakers", Category.SHOES, "https://example.com/white-sneakers.jpg", user2, null);
-        ClothingPiece cp8 = new ClothingPiece(null, "Black Cap", Category.HATS, "https://example.com/black-cap.jpg", user2, null);
-        clothingPieceRepository.saveAll(List.of(cp5, cp6, cp7, cp8));
+        ClothingPiece cp7 = new ClothingPiece(null, "Green Hoodie", Category.HOODIES, "https://example.com/green-hoodie.jpg", user2, null);
+        ClothingPiece cp8 = new ClothingPiece(null, "Gray Joggers", Category.JOGGERS, "https://example.com/gray-joggers.jpg", user2, null);
+        ClothingPiece cp9 = new ClothingPiece(null, "White Sneakers", Category.SHOES, "https://example.com/white-sneakers.jpg", user2, null);
+        ClothingPiece cp10 = new ClothingPiece(null, "Black Cap", Category.HATS, "https://example.com/black-cap.jpg", user2, null);
+        clothingPieceRepository.saveAll(List.of(cp7, cp8, cp9, cp10));
 
         // Create Outfits for User 1
         Outfit outfit1 = new Outfit(null, "Casual Look", user1, Set.of(cp1, cp2, cp3), Set.of(cp1.getId(), cp2.getId(), cp3.getId()));
