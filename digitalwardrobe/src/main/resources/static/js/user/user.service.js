@@ -82,5 +82,21 @@ export const userService = {
             throw new Error('Failed to add outfit');
         }
         return response.json();
-    }
+    },
+
+    updateClothingPiece: async (id, clothingPiece) => {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/api/clothing/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(clothingPiece)
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update clothing piece');
+        }
+        return response.json();
+    },
 };

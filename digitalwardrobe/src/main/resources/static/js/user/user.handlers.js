@@ -56,6 +56,7 @@ export const initializeProfilePage = async () => {
     }
 };
 
+// not used anymore
 export const addClothingPiece = async () => {
     const name = document.getElementById('clothingPieceName').value;
     const category = document.getElementById('clothingPieceCategory').value;
@@ -71,6 +72,7 @@ export const addClothingPiece = async () => {
     }
 };
 
+// not used anymore
 export const addOutfit = async () => {
     const name = document.getElementById('outfitName').value;
     const clothingPieceIds = document.getElementById('outfitClothingPieceIds').value.split(',').map(id => id.trim());

@@ -1,4 +1,3 @@
-console.log("auth-handlers.js loaded successfully!");
 import { authService } from "./auth.service.js";
 
 export const initializeAuthHandlers = () => {
