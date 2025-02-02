@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Nunito', Arial, sans-serif;
     margin: 0;
@@ -49,28 +53,24 @@ body {
     background-color: #e60000;
 }
 
-/* FLEXBOX LAYOUT */
-.wrapper {
-    display: flex;
-    height: calc(100vh - 100px);
-}
-
-/* MENU (LEFT SIDE - 15%) */
+/* MENU */
 .menu {
-    width: 15%;
-    background-color: #fdfdfd;
-    padding: 20px;
-    height: 100%;
-
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 20px 5px 2px;
+    /* border-bottom: 1px solid #ccc; */
 }
 
 .menu ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    gap: 20px;
 }
 
 .menu li {
-    margin-bottom: 15px;
+    margin-bottom: 0px;
 }
 
 .menu a {
@@ -95,23 +95,26 @@ body {
     margin-right: 10px;
 }
 
-/* CONTENT AREA (RIGHT SIDE - 85%) */
-.data {
+/* CONTENT AREA */
+.content {
     margin: 20px;
     background-color: #ffffff;
     border-radius: 20px;
-    width: 85%;
     padding: 20px;
     overflow-y: auto;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .content-container {
-    display: none;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    height: 0;
+    overflow: hidden;
 }
 
 .content-container.active {
-    display: block;
+    opacity: 1;
+    height: auto;
 }
 
 .form-group {
@@ -141,16 +144,12 @@ body {
 }
 
 /* CLOTHES SECTION */
-/* Add this to your profile.css file */
 .clothes-header {
+    /* padding: 20px; */
+    margin: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-}
-
-.clothes-header h2 {
-    margin: 0;  /* Remove default margin */
 }
 
 .add-clothing-btn {
@@ -158,7 +157,7 @@ body {
     background-color: #4b6bfb;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -169,6 +168,7 @@ body {
 
 /* clothing pieces cards */
 .clothing-card-container {
+    padding: 15px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -176,6 +176,7 @@ body {
 }
 
 .clothing-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -192,6 +193,10 @@ body {
     transform: scale(1.05);
 }
 
+.clothing-card:hover .card-buttons {
+    opacity: 1;
+}
+
 .clothing-card img {
     width: 100%;
     height: 160px;
@@ -204,6 +209,63 @@ body {
     font-size: 1rem;
     color: #333;
     font-weight: bold;
+}
+
+.card-buttons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+
+}
+.card-buttons button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.edit-btn:hover {
+    background-color: rgba(29, 172, 0, 0.9);
+}
+
+.delete-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-btn i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 /* modal styling (add new clothing) */
@@ -313,6 +375,7 @@ body {
     display: flex;
     justify-content: flex-end;
     margin-top: 25px;
+    gap: 10px;
 }
 
 .submit-btn {
@@ -328,4 +391,19 @@ body {
 
 .submit-btn:hover {
     background-color: #3451d1;
+}
+
+.delete-btn {
+    background-color: #e60000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #b30000;
 }

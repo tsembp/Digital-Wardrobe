@@ -1,4 +1,5 @@
 import { userService } from './user.service.js';
+import { ClothingModal } from '/js/clothing/clothing.modal.js';
 
 export const initializeProfilePage = async () => {
     if (window.location.pathname === '/profile') {
@@ -17,17 +18,49 @@ export const initializeProfilePage = async () => {
             const clothingPieceList = document.getElementById('clothingPieceList');
             clothingPieceList.innerHTML = '';
             clothingPieces.forEach(piece => {
+                // card
                 const card = document.createElement('div');
                 card.className = 'clothing-card';
 
+                // image preview
                 const img = document.createElement('img');
                 img.src = piece.imgUrl;
                 img.alt = piece.name;
                 card.appendChild(img);
 
+                // clothing piece name
                 const title = document.createElement('h3');
                 title.textContent = piece.name;
                 card.appendChild(title);
+
+                // edit & delete buttons on hover
+                const buttonsDiv = document.createElement('div');
+                buttonsDiv.className = 'card-buttons';
+
+                const editButton = document.createElement('button');
+                editButton.className = 'edit-btn';
+                editButton.innerHTML = '<i class="fas fa-edit"></i>';
+                editButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    ClothingModal.openEditModal(piece);
+                });
+
+                // Create Delete button
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'delete-btn';
+                deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
+                deleteButton.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    userService.deleteClothingPiece(piece.id)
+                        .then(() => initializeProfilePage()) // refresh clothing piece list
+                        .catch(error => console.error('Delete clothing piece error:', error));
+                });
+
+                buttonsDiv.appendChild(editButton);
+                buttonsDiv.appendChild(deleteButton);
+                card.appendChild(buttonsDiv);
+
+                // card.addEventListener('click', () => ClothingModal.openEditModal(piece));
 
                 clothingPieceList.appendChild(card);
             });

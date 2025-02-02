@@ -99,4 +99,17 @@ export const userService = {
         }
         return response.json();
     },
+
+    deleteClothingPiece: async (id) => {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/api/clothing/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to delete clothing piece');
+        }
+    }
 };

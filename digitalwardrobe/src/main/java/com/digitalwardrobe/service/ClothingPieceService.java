@@ -49,6 +49,13 @@ public class ClothingPieceService {
     // Delete clothing piece
     public void deleteClothingPiece(Long id, String username) {
         ClothingPiece existing = getClothingPiece(id, username);
+
+        // Remove associations with outfits
+        for (Outfit outfit : existing.getOutfits()) {
+            outfit.getClothingPieces().remove(existing);
+        }
+        clothingPieceRepository.save(existing);
+
         clothingPieceRepository.delete(existing);
     }
 }

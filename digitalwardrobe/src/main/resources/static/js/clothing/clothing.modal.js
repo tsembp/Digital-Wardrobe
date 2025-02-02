@@ -5,9 +5,14 @@ export const ClothingModal = {
     modal: null,
     form: null,
     imagePreview: null,
+    editModal: null,
+    editForm: null,
+    editImagePreview: null,
+    currentClothingPieceId: null,
 
     init() {
         this.createModal();
+        this.createEditModal();
         this.initializeEventListeners();
         this.fetchCategories();
     },
@@ -56,6 +61,12 @@ export const ClothingModal = {
         this.imagePreview = this.modal.querySelector('#imagePreview');
     },
 
+    createEditModal() {
+        this.editModal = document.getElementById('editClothingModal');
+        this.editForm = this.editModal.querySelector('#editClothingForm');
+        this.editImagePreview = this.editModal.querySelector('#editImagePreview');
+    },
+
     async fetchCategories() {
         try {
             const token = localStorage.getItem('token');
@@ -75,37 +86,46 @@ export const ClothingModal = {
     },
 
     populateCategories(categories) {
-        const categorySelect = this.modal.querySelector('#clothingCategory');
+        const addCategorySelect = this.modal.querySelector('#clothingCategory');
+        const editCategorySelect = this.editForm.querySelector('#editClothingCategory');
+    
         categories.forEach(category => {
-            const option = document.createElement('option');
-            option.value = category;
-            option.textContent = category.charAt(0) + category.slice(1).toLowerCase();
-            categorySelect.appendChild(option);
+            const addOption = document.createElement('option');
+            addOption.value = category;
+            addOption.textContent = category.charAt(0) + category.slice(1).toLowerCase();
+            addCategorySelect.appendChild(addOption);
+    
+            const editOption = document.createElement('option');
+            editOption.value = category;
+            editOption.textContent = category.charAt(0) + category.slice(1).toLowerCase();
+            editCategorySelect.appendChild(editOption);
         });
     },
 
     initializeEventListeners() {
-        // Add button on click handler
+        // Add modal
         const addButton = document.getElementById('addClothingBtn');
         addButton.addEventListener('click', () => this.openModal());
 
-        // Close button click handler
         const closeBtn = this.modal.querySelector('.close');
         closeBtn.addEventListener('click', () => this.closeModal());
 
-        // Click outside modal => close
         window.addEventListener('click', (e) => {
             if (e.target === this.modal) {
                 this.closeModal();
             }
         });
 
-        // Image preview handler
         const imageInput = this.modal.querySelector('#clothingImage');
         imageInput.addEventListener('change', (e) => this.handleImagePreview(e));
 
-        // Form submission handler
         this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+
+        // Edit modal
+        const editCloseBtn = this.editModal.querySelector('.close');
+        editCloseBtn.addEventListener('click', () => this.closeEditModal());
+
+        this.editForm.addEventListener('submit', (e) => this.handleEditSubmit(e));
     },
 
     openModal() {
@@ -116,6 +136,20 @@ export const ClothingModal = {
         this.modal.style.display = 'none';
         this.form.reset();
         this.imagePreview.innerHTML = '';
+    },
+
+    openEditModal(clothingPiece) {
+        this.currentClothingPieceId = clothingPiece.id;
+        this.editForm.querySelector('#editClothingName').value = clothingPiece.name;
+        this.editForm.querySelector('#editClothingCategory').value = clothingPiece.category;
+        this.editImagePreview.innerHTML = `<img src="${clothingPiece.imgUrl}" alt="Preview">`;
+        this.editModal.style.display = 'block';
+    },
+
+    closeEditModal() {
+        this.editModal.style.display = 'none';
+        this.editForm.reset();
+        this.editImagePreview.innerHTML = '';
     },
 
     handleImagePreview(e) {
@@ -129,7 +163,7 @@ export const ClothingModal = {
         }
     },
 
-    // submit logic
+    // Add submit logic
     async handleSubmit(e) {
         e.preventDefault();
         
@@ -184,6 +218,54 @@ export const ClothingModal = {
         } catch (error) {
             console.error('Error adding clothing item:', error);
             alert('Failed to add clothing item. Please try again.');
+        }
+    },
+
+    // Edit submit logic
+    async handleEditSubmit(e) {
+        e.preventDefault();
+        
+        try {
+            const formData = new FormData(this.editForm);
+            const token = localStorage.getItem('token');
+
+            const clothingPiece = {
+                name: formData.get('name'),
+                category: formData.get('category'),
+                imgUrl: this.editImagePreview.querySelector('img').src
+            };
+
+            await userService.updateClothingPiece(this.currentClothingPieceId, clothingPiece);
+
+            // Refresh the clothing list
+            await initializeProfilePage();
+            
+            // Close the modal and reset form
+            this.closeEditModal();
+
+            // Show success message
+            alert('Clothing item updated successfully!');
+        } catch (error) {
+            console.error('Error updating clothing item:', error);
+            alert('Failed to update clothing item. Please try again.');
+        }
+    },
+
+    async handleDelete() {
+        try {
+            await userService.deleteClothingPiece(this.currentClothingPieceId);
+
+            // Refresh the clothing list
+            await initializeProfilePage();
+            
+            // Close the modal
+            this.closeEditModal();
+
+            // Show success message
+            alert('Clothing item deleted successfully!');
+        } catch (error) {
+            console.error('Error deleting clothing item:', error);
+            alert('Failed to delete clothing item. Please try again.');
         }
     }
 };
