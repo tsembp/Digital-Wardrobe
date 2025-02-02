@@ -47,9 +47,17 @@ public class ClothingPiece {
     @JsonIgnoreProperties("clothingPieces")
     private Set<Outfit> outfits;
 
-    /* GETTERS */
+    /* GETTERS AND SETTERS */
     public Long getId(){
         return id;
+    }
+
+    public Object getName() {
+        return this.name;
+    }
+
+    public Object getCategory() {
+        return this.category;
     }
 
     public String getClothingPieceName(){
@@ -64,7 +72,14 @@ public class ClothingPiece {
         return imgUrl;
     }
 
-    /* SETTERS */
+    public Set<Outfit> getOutfits() {
+        return outfits;
+    }
+
+    public void setOutfits(Set<Outfit> outfits) {
+        this.outfits = outfits;
+    }
+
     public void setClothingPieceName(String value){
         this.name = value;
     }
@@ -79,14 +94,6 @@ public class ClothingPiece {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Object getName() {
-        return this.name;
-    }
-
-    public Object getCategory() {
-        return this.category;
     }
 
     public void setName(String value) {

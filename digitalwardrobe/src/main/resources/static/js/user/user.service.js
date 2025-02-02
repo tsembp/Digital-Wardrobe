@@ -11,6 +11,7 @@ export const userService = {
         }
         return response.json();
     },
+
     getUserOutfits: async () => {
         const token = localStorage.getItem('token');
         const response = await fetch('/api/outfit', {
@@ -24,6 +25,7 @@ export const userService = {
 
         return response.json();
     },
+
     getUserClothingPieces: async () => {
         const token = localStorage.getItem('token');
         const response = await fetch('/api/clothing', {
@@ -36,6 +38,20 @@ export const userService = {
         }
         return response.json();
     },
+
+    getUserCalendarEntries: async () => {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/calendarentries', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to load calendar entries');
+        }
+        return response.json();
+    },
+
     addClothingPiece: async (clothingPiece) => {
         const token = localStorage.getItem('token');
         const response = await fetch('/api/clothing', {
@@ -51,6 +67,7 @@ export const userService = {
         }
         return response.json();
     },
+
     addOutfit: async (outfit) => {
         const token = localStorage.getItem('token');
         const response = await fetch('/api/outfit', {
@@ -65,5 +82,34 @@ export const userService = {
             throw new Error('Failed to add outfit');
         }
         return response.json();
+    },
+
+    updateClothingPiece: async (id, clothingPiece) => {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/api/clothing/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(clothingPiece)
+        });
+        if (!response.ok) {
+            throw new Error('Failed to update clothing piece');
+        }
+        return response.json();
+    },
+
+    deleteClothingPiece: async (id) => {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/api/clothing/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            }
+        });
+        if (!response.ok) {
+            throw new Error('Failed to delete clothing piece');
+        }
     }
 };

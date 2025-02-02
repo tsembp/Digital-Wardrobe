@@ -18,7 +18,7 @@ import com.digitalwardrobe.models.ClothingPiece;
 import com.digitalwardrobe.service.ClothingPieceService;
 
 @RestController
-@RequestMapping("api/clothing")
+@RequestMapping("/api/clothing")
 public class ClothinPieceController {
 
     @Autowired
