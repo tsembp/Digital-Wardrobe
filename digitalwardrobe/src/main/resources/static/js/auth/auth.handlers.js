@@ -5,8 +5,6 @@ export const initializeAuthHandlers = () => {
 
   const loginForm = document.getElementById("loginForm");
   if (loginForm) {
-    console.log("Login form found!");
-
     // Create error message element if it doesn't exist
     let errorElement = document.querySelector(".error-message");
     if (!errorElement) {
@@ -60,8 +58,6 @@ export const initializeAuthHandlers = () => {
         errorElement.style.display = "block";
       }
     });
-  } else {
-    console.error("Login form not found!");
   }
 
   const registerForm = document.getElementById('registerForm');
@@ -83,6 +79,19 @@ export const initializeAuthHandlers = () => {
         } catch (error) {
             console.error('Registration error:', error);
             alert('Registration failed. Please try again.');
+        }
+    });
+  }
+
+  const logoutButton = document.getElementById('logoutButton');
+  if(logoutButton) {
+    logoutButton.addEventListener('click', async () => {
+        try {
+            await authService.logout();
+            window.location.href = '/';
+        } catch (error) {
+            console.error('Logout error:', error);
+            alert('Logout failed. Please try again.');
         }
     });
   }

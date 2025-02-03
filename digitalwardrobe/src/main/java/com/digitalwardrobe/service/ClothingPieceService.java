@@ -54,7 +54,7 @@ public class ClothingPieceService {
         for (Outfit outfit : existing.getOutfits()) {
             outfit.getClothingPieces().remove(existing);
         }
-        clothingPieceRepository.save(existing);
+        // clothingPieceRepository.save(existing);
 
         clothingPieceRepository.delete(existing);
     }

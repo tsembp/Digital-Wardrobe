@@ -15,7 +15,7 @@
         <div class="profile-info">
             <p id="header-username">Loading...</p>
             <img src="/assets/dummy-profile.png" alt="Dummy Profile pic">
-            <button id="logoutButton" onclick="logout()">Logout</button>
+            <button id="logoutButton">Logout</button>
         </div>
     </div>
 
@@ -104,6 +104,12 @@
         });
     </script>
     <script type="module" src="/js/clothing/clothing.modal.js"></script>
+    <script type="module">
+        import { initializeAuthHandlers } from "/js/auth/auth.handlers.js";
+        document.addEventListener("DOMContentLoaded", () => {
+          initializeAuthHandlers();
+        });
+    </script>
 
     <!-- confirm delete clothing piece modal -->
     <div id="deleteConfirmationModal" class="modal">

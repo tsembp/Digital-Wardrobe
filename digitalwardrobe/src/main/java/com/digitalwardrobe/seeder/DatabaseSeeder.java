@@ -61,7 +61,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         ClothingPiece cp2 = new ClothingPiece(null, "Homeboy jeans", Category.PANTS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/90cc94a5-f127-46f9-91d4-a7707097dd25_blue-jean.png?alt=media", user1, null);
         ClothingPiece cp3 = new ClothingPiece(null, "Jordan 4s", Category.SHOES, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/b12fcde1-b000-4477-8abe-7f6c0e3789bf_jordan-4s.png?alt=media", user1, null);
         ClothingPiece cp4 = new ClothingPiece(null, "Nike Shorts", Category.SHORTS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/886ee14d-70d9-4061-9edb-b30de3190ebb_nike-short.png?alt=media", user1, null);
-        ClothingPiece cp5 = new ClothingPiece(null, "Converse Cap", Category.HATS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/106173f8-4543-437d-8c96-7c2c24957bf5_converse-cap.png?alt=media", user1, null);
+        ClothingPiece cp5 = new ClothingPiece(null, "Converse Cap", Category.HATS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/converse-cap.png?alt=media&token=27b96df7-b1ae-4f87-9f67-2b9eecc8f53d", user1, null);
         ClothingPiece cp6 = new ClothingPiece(null, "Pull&Bear Sweatshirt", Category.SWEATSHIRTS, "https://firebasestorage.googleapis.com/v0/b/digital-wardrobe-4784a.firebasestorage.app/o/b073cb8a-86bd-4e61-8ada-690945e81500_black-sweatshirt.png?alt=media", user1, null);
         clothingPieceRepository.saveAll(List.of(cp1, cp2, cp3, cp4, cp5, cp6));
 
