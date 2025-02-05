@@ -34,6 +34,9 @@ public class ClothingPiece {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @Enumerated(EnumType.STRING)
+    private Color color;
+
     @JsonProperty("imgUrl")
     @Column(name = "img_url")
     private String imgUrl;
@@ -76,6 +79,14 @@ public class ClothingPiece {
         return outfits;
     }
 
+    public String getImgUrl(){
+        return imgUrl;
+    }
+
+    public Color getColor(){
+        return color;
+    }
+
     public void setOutfits(Set<Outfit> outfits) {
         this.outfits = outfits;
     }
@@ -102,6 +113,10 @@ public class ClothingPiece {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public void setColor(Color color){
+        this.color = color;
     }
     
 }

@@ -41,6 +41,24 @@ export const ClothingModal = {
                     </div>
                     
                     <div class="form-group">
+                        <label for="clothingColor">Color:</label>
+                        <div id="colorSelection" class="color-selection">
+                            <div class="color-circle" data-color="red" style="background-color: red;"></div>
+                            <div class="color-circle" data-color="blue" style="background-color: blue;"></div>
+                            <div class="color-circle" data-color="green" style="background-color: green;"></div>
+                            <div class="color-circle" data-color="yellow" style="background-color: yellow;"></div>
+                            <div class="color-circle" data-color="black" style="background-color: black;"></div>
+                            <div class="color-circle" data-color="white" style="background-color: white;"></div>
+                            <div class="color-circle" data-color="gray" style="background-color: gray;"></div>
+                            <div class="color-circle" data-color="purple" style="background-color: #A020F0;"></div>
+                            <div class="color-circle" data-color="orange" style="background-color: orange;"></div>
+                            <div class="color-circle" data-color="pink" style="background-color: pink;"></div>
+                            <div class="color-circle" data-color="brown" style="background-color: #964B00;"></div>
+                        </div>
+                        <input type="hidden" id="clothingColor" name="color" required>
+                    </div>
+                    
+                    <div class="form-group">
                         <label for="clothingImage">Image:</label>
                         <input type="file" id="clothingImage" name="image" accept="image/*" required>
                         <div id="imagePreview" class="image-preview"></div>
@@ -59,6 +77,16 @@ export const ClothingModal = {
         // references for frequently used elements
         this.form = this.modal.querySelector('#addClothingForm');
         this.imagePreview = this.modal.querySelector('#imagePreview');
+
+        // Add event listeners for color selection
+        const colorCircles = this.modal.querySelectorAll('.color-circle');
+        colorCircles.forEach(circle => {
+            circle.addEventListener('click', (e) => {
+                colorCircles.forEach(c => c.classList.remove('selected'));
+                e.target.classList.add('selected');
+                this.modal.querySelector('#clothingColor').value = e.target.getAttribute('data-color');
+            });
+        });
     },
 
     createEditModal() {
@@ -175,8 +203,12 @@ export const ClothingModal = {
             const clothingPiece = {
                 name: formData.get('name'),
                 category: formData.get('category'),
+                color: formData.get('color').toUpperCase(),
                 imgUrl: ""
             };
+
+            console.log('Adding clothing piece:');
+            console.table(clothingPiece);
 
             const createdClothingPiece = await userService.addClothingPiece(clothingPiece);
             const clothingPieceId = createdClothingPiece.id;

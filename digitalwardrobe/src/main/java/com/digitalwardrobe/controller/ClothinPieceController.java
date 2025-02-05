@@ -23,7 +23,7 @@ public class ClothinPieceController {
 
     @Autowired
     private ClothingPieceService clothingPieceService;
-
+    
     @PostMapping
     public ResponseEntity<ClothingPiece> addClothingPiece(@RequestBody ClothingPiece clothingPiece, Principal principal) {
         return ResponseEntity.ok(clothingPieceService.addClothingPiece(clothingPiece, principal.getName()));

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-
     <!-- HEADER -->
     <div class="header">
         <img src="/assets/header-logo.png" alt="Closetly Logo" />
@@ -51,12 +50,39 @@
             </div>
         </div>
 
+        <!-- Clothes Section -->
         <div id="clothes" class="content-container">
+            <!-- header -->
             <div class="clothes-header">
                 <h2>Clothing Pieces</h2>
                 <button id="addClothingBtn" class="add-clothing-btn">Add New Clothing</button>
             </div>
+            <!-- filters -->
+            <div id="filterSection" class="filter-section">
+                <div class="filter-container">
+                    <div class="form-group custom-dropdown">
+                        <label for="filterCategory">Filter by Category:</label>
+                        <div id="filterCategoryDropdown" class="dropdown">
+                            <button class="dropdown-btn">Select Category</button>
+                            <div class="dropdown-content" id="filterCategoryList"></div>
+                        </div>
+                    </div>
+                    <div class="form-group custom-dropdown">
+                        <label for="filterColor">Filter by Color:</label>
+                        <div id="filterColorDropdown" class="dropdown">
+                            <button class="dropdown-btn">Select Color</button>
+                            <div class="dropdown-content" id="filterColorList"></div>
+                        </div>
+                    </div>
+                    <div class="filter-actions">
+                        <button id="applyFiltersBtn" class="apply-btn">Apply</button>
+                        <button id="clearFiltersBtn" class="clear-btn">Clear</button>
+                    </div>
+                </div>
+            </div>
+            <!-- cards/main body -->
             <div id="clothingPieceList" class="clothing-card-container"></div>
+            <div id="noMatchesMessage" style="display: none;">No clothing items match the selected filters.</div>
         </div>
 
         <div id="outfits" class="content-container">
@@ -103,13 +129,14 @@
             initializeProfilePage();
         });
     </script>
-    <script type="module" src="/js/clothing/clothing.modal.js"></script>
     <script type="module">
         import { initializeAuthHandlers } from "/js/auth/auth.handlers.js";
         document.addEventListener("DOMContentLoaded", () => {
           initializeAuthHandlers();
         });
     </script>
+    <script type="module" src="/js/clothing/clothing.modal.js"></script>
+    <script type="module" src="/js/clothing/filters.js"></script>
 
     <!-- confirm delete clothing piece modal -->
     <div id="deleteConfirmationModal" class="modal">

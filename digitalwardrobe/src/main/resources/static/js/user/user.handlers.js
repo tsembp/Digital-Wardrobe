@@ -21,6 +21,8 @@ export const initializeProfilePage = async () => {
                 // card
                 const card = document.createElement('div');
                 card.className = 'clothing-card';
+                card.setAttribute('data-category', piece.category);
+                card.setAttribute('data-color', piece.color);
 
                 // image preview
                 const img = document.createElement('img');
