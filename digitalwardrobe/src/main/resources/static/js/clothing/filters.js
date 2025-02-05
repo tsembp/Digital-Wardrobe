@@ -105,41 +105,52 @@ function closeFilterSection() {
 }
 
 function applyFilters() {
-    const selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value.toUpperCase());
-    const selectedColors = Array.from(document.querySelectorAll('.color-checkbox:checked')).map(cb => cb.value.toUpperCase());
-
-    console.log('Selected categories:', selectedCategories);
-    console.log('Selected colors:', selectedColors);
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const clothingCardContainer = document.querySelector('.clothing-card-container');
     
-    const clothingCards = document.querySelectorAll('.clothing-card');
-    let hasResults = false;
-    console.log(clothingCards);
-    
-    clothingCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        const color = card.getAttribute('data-color');
+    // Blur the clothing cards and show the loading indicator
+    clothingCardContainer.classList.add('blurred');
+    loadingIndicator.classList.add('active');
 
-        console.log(`Card category: ${category}, color: ${color}`);
+    setTimeout(() => {
+        const selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value.toUpperCase());
+        const selectedColors = Array.from(document.querySelectorAll('.color-checkbox:checked')).map(cb => cb.value.toUpperCase());
 
-        const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(category);
-        const matchesColor = selectedColors.length === 0 || selectedColors.includes(color);
+        console.log('Selected categories:', selectedCategories);
+        console.log('Selected colors:', selectedColors);
 
-        if (matchesCategory && matchesColor) {
-            card.style.display = 'block';
-            hasResults = true;
+        const clothingCards = document.querySelectorAll('.clothing-card');
+        let hasResults = false;
+
+        clothingCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            const color = card.getAttribute('data-color');
+
+            console.log(`Card category: ${category}, color: ${color}`);
+
+            const matchesCategory = selectedCategories.length === 0 || selectedCategories.includes(category);
+            const matchesColor = selectedColors.length === 0 || selectedColors.includes(color);
+
+            if (matchesCategory && matchesColor) {
+                card.style.display = 'block';
+                hasResults = true;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        const noMatchesMessage = document.getElementById('noMatchesMessage');
+        if (!hasResults) {
+            noMatchesMessage.style.display = 'block';
         } else {
-            card.style.display = 'none';
+            noMatchesMessage.style.display = 'none';
         }
-    });
 
-    const noMatchesMessage = document.getElementById('noMatchesMessage');
-    if (!hasResults) {
-        noMatchesMessage.style.display = 'block';
-    } else {
-        noMatchesMessage.style.display = 'none';
-    }
-
-    closeFilterSection();
+        // Remove the blur and hide the loading indicator
+        clothingCardContainer.classList.remove('blurred');
+        loadingIndicator.classList.remove('active');
+        closeFilterSection();
+    }, 300); // Simulate loading time
 }
 
 function clearFilters() {
