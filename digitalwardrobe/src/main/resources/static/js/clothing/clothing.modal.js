@@ -1,5 +1,5 @@
 import { initializeProfilePage } from '/js/user/user.handlers.js';
-import { userService } from '/js/user/user.service.js';
+import { clothingPieceService } from '/js/clothing/clothing.service.js';
 
 export const ClothingModal = {
     modal: null,
@@ -17,6 +17,7 @@ export const ClothingModal = {
         this.fetchCategories();
     },
 
+    // Modal for creating new clothing piece
     createModal() {
         this.modal = document.createElement('div');
         this.modal.className = 'modal';
@@ -89,6 +90,7 @@ export const ClothingModal = {
         });
     },
 
+    // Modal for editing existing clothing piece
     createEditModal() {
         this.editModal = document.getElementById('editClothingModal');
         this.editForm = this.editModal.querySelector('#editClothingForm');
@@ -156,6 +158,7 @@ export const ClothingModal = {
         this.editForm.addEventListener('submit', (e) => this.handleEditSubmit(e));
     },
 
+    // Open & close for create modal
     openModal() {
         this.modal.style.display = 'block';
     },
@@ -166,6 +169,7 @@ export const ClothingModal = {
         this.imagePreview.innerHTML = '';
     },
 
+    // Open & close for edit modal
     openEditModal(clothingPiece) {
         this.currentClothingPieceId = clothingPiece.id;
         this.editForm.querySelector('#editClothingName').value = clothingPiece.name;
@@ -191,7 +195,7 @@ export const ClothingModal = {
         }
     },
 
-    // Add submit logic
+    // Create new submit logic
     async handleSubmit(e) {
         e.preventDefault();
         
@@ -210,7 +214,7 @@ export const ClothingModal = {
             console.log('Adding clothing piece:');
             console.table(clothingPiece);
 
-            const createdClothingPiece = await userService.addClothingPiece(clothingPiece);
+            const createdClothingPiece = await clothingPieceService.addClothingPiece(clothingPiece);
             const clothingPieceId = createdClothingPiece.id;
             
             // upload image to firebase
@@ -237,7 +241,7 @@ export const ClothingModal = {
                 ? imgResponseText.split('Image URL: ')[1].split('\n')[0].trim()
                 : null;
             clothingPiece.imgUrl = imgUrl;
-            await userService.updateClothingPiece(clothingPieceId, clothingPiece);
+            await clothingPieceService.updateClothingPiece(clothingPieceId, clothingPiece);
 
             // Refresh the clothing list
             await initializeProfilePage();
@@ -267,7 +271,7 @@ export const ClothingModal = {
                 imgUrl: this.editImagePreview.querySelector('img').src
             };
 
-            await userService.updateClothingPiece(this.currentClothingPieceId, clothingPiece);
+            await clothingPieceService.updateClothingPiece(this.currentClothingPieceId, clothingPiece);
 
             // Refresh the clothing list
             await initializeProfilePage();
@@ -285,7 +289,7 @@ export const ClothingModal = {
 
     async handleDelete() {
         try {
-            await userService.deleteClothingPiece(this.currentClothingPieceId);
+            await clothingPieceService.deleteClothingPiece(this.currentClothingPieceId);
 
             // Refresh the clothing list
             await initializeProfilePage();

@@ -547,3 +547,23 @@ body {
 .delete-btn:hover {
     background-color: #b30000;
 }
+
+.color-selection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid transparent;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.3s ease;
+}
+
+.color-circle.selected {
+    border-color: #000;
+}

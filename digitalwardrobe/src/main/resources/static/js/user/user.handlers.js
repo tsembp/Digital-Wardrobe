@@ -1,5 +1,6 @@
-import { userService } from './user.service.js';
 import { ClothingModal } from '/js/clothing/clothing.modal.js';
+import { clothingPieceService } from '/js/clothing/clothing.service.js';
+import { userService } from './user.service.js';
 
 export const initializeProfilePage = async () => {
     if (window.location.pathname === '/profile') {
@@ -14,7 +15,7 @@ export const initializeProfilePage = async () => {
             document.getElementById('email').value = user.email;
 
             // fetch clothes
-            const clothingPieces = await userService.getUserClothingPieces();
+            const clothingPieces = await clothingPieceService.getUserClothingPieces();
             const clothingPieceList = document.getElementById('clothingPieceList');
             clothingPieceList.innerHTML = '';
             clothingPieces.forEach(piece => {
@@ -53,7 +54,7 @@ export const initializeProfilePage = async () => {
                 deleteButton.innerHTML = '<i class="fas fa-trash"></i>';
                 deleteButton.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    userService.deleteClothingPiece(piece.id)
+                    clothingPieceService.deleteClothingPiece(piece.id)
                         .then(() => initializeProfilePage()) // refresh clothing piece list
                         .catch(error => console.error('Delete clothing piece error:', error));
                 });
@@ -90,38 +91,3 @@ export const initializeProfilePage = async () => {
         }
     }
 };
-
-// not used anymore
-export const addClothingPiece = async () => {
-    const name = document.getElementById('clothingPieceName').value;
-    const category = document.getElementById('clothingPieceCategory').value;
-    const imgUrl = document.getElementById('clothingPieceImgUrl').value;
-
-    try {
-        await userService.addClothingPiece({ name, category, imgUrl });
-        alert('Clothing piece added successfully');
-        window.location.reload();
-    } catch (error) {
-        console.error('Add clothing piece error:', error);
-        alert('Failed to add clothing piece');
-    }
-};
-
-// not used anymore
-export const addOutfit = async () => {
-    const name = document.getElementById('outfitName').value;
-    const clothingPieceIds = document.getElementById('outfitClothingPieceIds').value.split(',').map(id => id.trim());
-
-    try {
-        await userService.addOutfit({ name, clothingPieceIds });
-        alert('Outfit added successfully');
-        window.location.reload();
-    } catch (error) {
-        console.error('Add outfit error:', error);
-        alert('Failed to add outfit');
-    }
-};
-
-// add functions to global scope
-window.addClothingPiece = addClothingPiece;
-window.addOutfit = addOutfit;

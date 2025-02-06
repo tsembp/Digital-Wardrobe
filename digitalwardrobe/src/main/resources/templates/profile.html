@@ -100,6 +100,7 @@
     <script type="module">
         import { initializeProfilePage } from '/js/user/user.handlers.js';
         import { ClothingModal } from '/js/clothing/clothing.modal.js';
+        import { clothingPieceService } from '/js/clothing/clothing.service.js';
 
         function showSection(sectionId) {
             event.preventDefault(); // Prevent default link behavior
@@ -137,6 +138,7 @@
         });
     </script>
     <script type="module" src="/js/clothing/clothing.modal.js"></script>
+    <script type="module" src="/js/clothing/clothing.service.js"></script>
     <script type="module" src="/js/clothing/filters.js"></script>
 
     <!-- confirm delete clothing piece modal -->
