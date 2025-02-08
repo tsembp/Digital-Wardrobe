@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/css/profile.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -19,6 +21,7 @@
     </div>
 
     <!-- MAIN LAYOUT -->
+    <!-- menu -->
     <section class="menu">
         <ul>
             <li><a href="#profile" class="active" data-section="profile" onclick="showSection('profile')"><img src="/assets/profile-icons/profile.png" alt="Profile">Profile</a></li>
@@ -27,7 +30,9 @@
             <li><a href="#calendar" data-section="calendar" onclick="showSection('calendar')"><img src="/assets/profile-icons/calendar.png" alt="Calendar">Calendar</a></li>
         </ul>
     </section>
+    <!-- main content area -->
     <div class="content">
+        <!-- Profile section -->
         <div id="profile" class="content-container active">
             <h2>User Profile</h2>
             <div id="userDetails">
@@ -86,14 +91,16 @@
             <div id="noMatchesMessage" style="display: none;">No clothing items match the selected filters.</div>
         </div>
 
+        <!-- Outfits Section -->
         <div id="outfits" class="content-container">
             <h2>Outfits</h2>
             <ul id="outfitList"></ul>
         </div>
 
+        <!-- Calendar -->
         <div id="calendar" class="content-container">
             <h2>Calendar</h2>
-            <ul id="calendarEntryList"></ul>
+            <div id="full-calendar"></div>
         </div>
     </div>
 
@@ -140,6 +147,16 @@
     <script type="module" src="/js/clothing/clothing.modal.js"></script>
     <script type="module" src="/js/clothing/clothing.service.js"></script>
     <script type="module" src="/js/clothing/filters.js"></script>
+    <script type="module" src="/js/calendar/calendar.init.js"></script>
+
+    <!-- view outfit from calendar modal -->
+    <div id="viewOutfitModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Outfit Details</h2>
+            <div id="outfitDetails"></div>
+        </div>
+    </div>
 
     <!-- confirm delete clothing piece modal -->
     <div id="deleteConfirmationModal" class="modal">

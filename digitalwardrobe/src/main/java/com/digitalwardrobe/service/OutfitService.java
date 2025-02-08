@@ -60,7 +60,15 @@ public class OutfitService {
 
     // Get specific outfit
     public Outfit getOutfit(Long id, String username) {
-        return outfitRepository.findByIdAndUserUsername(id, username).orElseThrow(() -> new ResourceNotFoundException("Outfit not found"));
+        Outfit outfit = outfitRepository.findByIdAndUserUsername(id, username).orElseThrow(() -> new ResourceNotFoundException("Outfit not found"));
+        
+        // Populate clothingPieceIds
+        Set<Long> clothingPieceIds = outfit.getClothingPieces().stream()
+            .map(ClothingPiece::getId)
+            .collect(Collectors.toSet());
+        outfit.setClothingPieceIds(clothingPieceIds);
+
+        return outfit;
     }
 
     // Update outfit

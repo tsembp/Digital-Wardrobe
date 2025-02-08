@@ -12,9 +12,9 @@ export const userService = {
         return response.json();
     },
 
-    getUserOutfits: async () => {
+    async getOutfit(outfitId) {
         const token = localStorage.getItem('token');
-        const response = await fetch('/api/outfit', {
+        const response = await fetch(`/api/outfit/${outfitId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -26,16 +26,17 @@ export const userService = {
         return response.json();
     },
 
-    getUserCalendarEntries: async () => {
+    getUserOutfits: async () => {
         const token = localStorage.getItem('token');
-        const response = await fetch('/api/calendarentries', {
+        const response = await fetch('/api/outfit', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         });
         if (!response.ok) {
-            throw new Error('Failed to load calendar entries');
+            throw new Error('Failed to load outfits');
         }
+
         return response.json();
     },
 

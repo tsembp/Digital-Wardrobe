@@ -1,6 +1,7 @@
 import { ClothingModal } from '/js/clothing/clothing.modal.js';
 import { clothingPieceService } from '/js/clothing/clothing.service.js';
 import { userService } from './user.service.js';
+import { initializeCalendar } from '/js/calendar/calendar.init.js';
 
 export const initializeProfilePage = async () => {
     if (window.location.pathname === '/profile') {
@@ -77,17 +78,18 @@ export const initializeProfilePage = async () => {
                 outfitList.appendChild(li);
             });
 
-            // fetch calendar entries
-            const calendarEntries = await userService.getUserCalendarEntries();
-            const calendarEntryList = document.getElementById('calendarEntryList');
-            calendarEntries.forEach(calendarEntry => {
-                const li = document.createElement('li');
-                li.textContent = calendarEntry.date;
-                calendarEntryList.appendChild(li);
-            });
+            // initialize calendar 
+            initializeCalendar();
+            // const calendarEntries = await calendarEntryService.getUserCalendarEntries();
+            // const calendarEntryList = document.getElementById('calendarEntryList');
+            // calendarEntries.forEach(calendarEntry => {
+            //     const li = document.createElement('li');
+            //     li.textContent = calendarEntry.date;
+            //     calendarEntryList.appendChild(li);
+            // });
         } catch (error) {
             console.error('Profile error:', error);
-            window.location.href = '/';
+            // window.location.href = '/';
         }
     }
 };
