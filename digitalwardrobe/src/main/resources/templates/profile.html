@@ -4,34 +4,37 @@
     <meta charset="UTF-8">
     <title>Digital Wardrobe - Profile</title>
     <link rel="stylesheet" href="/css/profile.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Archivo+Black&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
 </head>
 <body>
-    <!-- HEADER -->
-    <div class="header">
-        <img src="/assets/header-logo.png" alt="Closetly Logo" />
-        <div class="profile-info">
-            <p id="header-username">Loading...</p>
-            <img src="/assets/dummy-profile.png" alt="Dummy Profile pic">
-            <button id="logoutButton">Logout</button>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <img src="/assets/header-logo.png" alt="Closetly Logo" class="logo" />
+            <div class="separator"></div>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#profile" class="active" data-section="profile" onclick="showSection('profile')"><img src="/assets/profile-icons/profile.png" alt="Profile">Profile</a></li>
+                <li><a href="#clothes" data-section="clothes" onclick="showSection('clothes')"><img src="/assets/profile-icons/clothes.png" alt="Clothes">Clothes</a></li>
+                <li><a href="#outfits" data-section="outfits" onclick="showSection('outfits')"><img src="/assets/profile-icons/outfit.png" alt="Outfits">Outfits</a></li>
+                <li><a href="#calendar" data-section="calendar" onclick="showSection('calendar')"><img src="/assets/profile-icons/calendar.png" alt="Calendar">Calendar</a></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <img src="/assets/dummy-profile.png" alt="Profile Picture" class="profile-pic">
+                <span id="header-username">Loading...</span>
+            </div>
+            <button id="logoutButton" class="logout-btn">Logout</button>
         </div>
     </div>
 
-    <!-- MAIN LAYOUT -->
-    <!-- menu -->
-    <section class="menu">
-        <ul>
-            <li><a href="#profile" class="active" data-section="profile" onclick="showSection('profile')"><img src="/assets/profile-icons/profile.png" alt="Profile">Profile</a></li>
-            <li><a href="#clothes" data-section="clothes" onclick="showSection('clothes')"><img src="/assets/profile-icons/clothes.png" alt="Clothes">Clothes</a></li>
-            <li><a href="#outfits" data-section="outfits" onclick="showSection('outfits')"><img src="/assets/profile-icons/outfit.png" alt="Outfits">Outfits</a></li>
-            <li><a href="#calendar" data-section="calendar" onclick="showSection('calendar')"><img src="/assets/profile-icons/calendar.png" alt="Calendar">Calendar</a></li>
-        </ul>
-    </section>
-    <!-- main content area -->
-    <div class="content">
+    <!-- Main Content -->
+    <div class="main-content">
         <!-- Profile section -->
         <div id="profile" class="content-container active">
             <h2>User Profile</h2>
