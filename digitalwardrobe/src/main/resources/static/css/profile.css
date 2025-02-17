@@ -95,7 +95,18 @@ body {
     margin-right: 10px;
 }
 
-/* CONTENT AREA */
+/* PROFILE AREA */
+.userDetails-header {
+    display: flex;
+    gap: 20px;
+}
+
+.userDetails-header img {
+    height: 70px;
+    width: auto;
+    border-radius: 100%;    
+}
+
 .content {
     margin: 20px;
     background-color: #ffffff;
@@ -153,17 +164,32 @@ body {
 }
 
 .add-clothing-btn {
-    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
     background-color: #4b6bfb;
     color: white;
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.add-clothing-btn i {
+    transition: transform 0.3s ease;
+    font-size: 14px;
 }
 
 .add-clothing-btn:hover {
     background-color: #3451d1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(75, 107, 251, 0.3);
+}
+
+.add-clothing-btn:hover i {
+    transform: rotate(90deg);
 }
 
 /* filters styling */
@@ -566,4 +592,91 @@ body {
 
 .color-circle.selected {
     border-color: #000;
+}
+
+.outfitConstructor-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background-color: #4b6bfb;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.outfitConstructor-btn i {
+    transition: transform 0.3s ease;
+}
+
+.outfitConstructor-btn:hover {
+    background-color: #3451d1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(75, 107, 251, 0.3);
+}
+
+.outfitConstructor-btn:hover i {
+    transform: translateX(5px);
+}
+
+/* Statistics Section */
+.statistics-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    background-color: #4b6bfb;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon i {
+    color: white;
+    font-size: 24px;
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-info h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    font-weight: 600;
+}
+
+.stat-info p {
+    margin: 5px 0 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
 }

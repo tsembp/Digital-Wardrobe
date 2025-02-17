@@ -69,27 +69,40 @@ export const initializeProfilePage = async () => {
                 clothingPieceList.appendChild(card);
             });
 
+            // set number of clothing pieces
+            document.getElementById('clothingCount').innerHTML = clothingPieces.length;
+
             // fetch outfits
             const outfits = await userService.getUserOutfits();
             const outfitList = document.getElementById('outfitList');
+            outfitList.innerHTML = ''; // Clear existing list
             outfits.forEach(outfit => {
                 const li = document.createElement('li');
                 li.textContent = outfit.name;
                 outfitList.appendChild(li);
             });
 
+            // set number of outfits created
+            document.getElementById('outfitCount').innerHTML = outfits.length;
+
+            // Calculate most popular color
+            const colorCounts = clothingPieces.reduce((acc, piece) => {
+                acc[piece.color] = (acc[piece.color] || 0) + 1;
+                return acc;
+            }, {});
+
+            const mostPopularColor = Object.entries(colorCounts).reduce((a, b) => 
+                (b[1] > a[1] ? b : a), ['none', 0]);
+            
+            document.getElementById('popularColor').innerHTML = 
+                mostPopularColor[0] === 'none' ? 'None' : 
+                `${mostPopularColor[0].charAt(0).toUpperCase() + mostPopularColor[0].slice(1).toLowerCase()} (${mostPopularColor[1]})`;
+
             // initialize calendar 
             initializeCalendar();
-            // const calendarEntries = await calendarEntryService.getUserCalendarEntries();
-            // const calendarEntryList = document.getElementById('calendarEntryList');
-            // calendarEntries.forEach(calendarEntry => {
-            //     const li = document.createElement('li');
-            //     li.textContent = calendarEntry.date;
-            //     calendarEntryList.appendChild(li);
-            // });
         } catch (error) {
             console.error('Profile error:', error);
-            // window.location.href = '/';
+            window.location.href = '/';
         }
     }
 };
